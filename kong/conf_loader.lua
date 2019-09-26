@@ -117,6 +117,7 @@ local CONF_INFERENCES = {
   admin_listen = { typ = "array" },
   status_listen = { typ = "array" },
   stream_listen = { typ = "array" },
+  cluster_listen = { typ = "array" },
   origins = { typ = "array" },
   db_update_frequency = {  typ = "number"  },
   db_update_propagation = {  typ = "number"  },
@@ -154,7 +155,7 @@ local CONF_INFERENCES = {
                          }
                        },
 
-  database = { enum = { "postgres", "cassandra", "off" }  },
+  storage = { enum = { "postgres", "cassandra", "memory", }  },
   pg_port = { typ = "number" },
   pg_timeout = { typ = "number" },
   pg_password = { typ = "string" },
@@ -235,6 +236,8 @@ local CONF_INFERENCES = {
 
   lua_ssl_verify_depth = { typ = "number" },
   lua_socket_pool_size = { typ = "number" },
+  role = { enum = { "proxy", "admin", "traditional", }, },
+  cluster_control_plane = { typ = "string", },
 }
 
 
@@ -1035,6 +1038,13 @@ local function load(path, custom_conf, opts)
     end
 
     setmetatable(conf.status_listeners, _nop_tostring_mt)
+
+    conf.cluster_listeners, err = parse_listeners(conf.cluster_listen, http_flags)
+    if err then
+      return nil, "cluster_listen " .. err
+    end
+
+    setmetatable(conf.cluster_listeners, _nop_tostring_mt)
   end
 
   do

@@ -14,6 +14,8 @@ proxy_listen = 0.0.0.0:8000, 0.0.0.0:8443 http2 ssl
 stream_listen = off
 admin_listen = 127.0.0.1:8001, 127.0.0.1:8444 http2 ssl
 status_listen = off
+cluster_listen = 0.0.0.0:8002
+cluster_control_plane = 127.0.0.1:8002
 origins = NONE
 nginx_user = nobody nobody
 nginx_worker_processes = auto
@@ -43,7 +45,7 @@ nginx_http_upstream_keepalive = 60
 nginx_http_upstream_keepalive_requests = 100
 nginx_http_upstream_keepalive_timeout = 60s
 
-database = postgres
+storage = postgres
 pg_host = 127.0.0.1
 pg_port = 5432
 pg_database = kong
@@ -96,4 +98,6 @@ lua_ssl_trusted_certificate = NONE
 lua_ssl_verify_depth = 1
 lua_package_path = ./?.lua;./?/init.lua;
 lua_package_cpath = NONE
+
+role = traditional
 ]]
