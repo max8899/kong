@@ -1,6 +1,6 @@
 local version = setmetatable({
-  major = 1,
-  minor = 4,
+  major = 2,
+  minor = 0,
   patch = 0,
   -- suffix = "",
 }, {
