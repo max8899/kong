@@ -155,7 +155,7 @@ local CONF_INFERENCES = {
                          }
                        },
 
-  storage = { enum = { "postgres", "cassandra", "memory", }  },
+  database = { enum = { "postgres", "cassandra", "off" }  },
   pg_port = { typ = "number" },
   pg_timeout = { typ = "number" },
   pg_password = { typ = "string" },
@@ -343,7 +343,7 @@ local function check_and_infer(conf)
   -- custom validations
   ---------------------
 
-  if conf.storage == "cassandra" then
+  if conf.database == "cassandra" then
     if string.find(conf.cassandra_lb_policy, "DCAware", nil, true)
        and not conf.cassandra_local_datacenter
     then
@@ -561,7 +561,7 @@ local function check_and_infer(conf)
       errors[#errors + 1] = "cluster_listen must be specified when role = \"admin\""
     end
 
-    if conf.storage == "memory" then
+    if conf.database == "off" then
       errors[#errors + 1] = "in-memory storage can not be used when role = \"admin\""
     end
 
@@ -574,7 +574,7 @@ local function check_and_infer(conf)
       errors[#errors + 1] = "cluster_control_plane must be specified when role = \"proxy\""
     end
 
-    if conf.storage ~= "memory" then
+    if conf.database ~= "off" then
       errors[#errors + 1] = "only in-memory storage can be used when role = \"proxy\""
     end
   end
