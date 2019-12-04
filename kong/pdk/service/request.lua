@@ -73,6 +73,20 @@ local function new(self)
 
 
   ---
+  -- Enables buffered proxying that allows plugins to access service body and
+  -- response headers at the same time
+  -- @function kong.service.request.enable_buffering
+  -- @phases `rewrite`, `access`
+  -- @return Nothing
+  -- @usage
+  -- kong.service.request.enable_buffering()
+  request.enable_buffering = function()
+    check_phase(access_and_rewrite)
+
+    self.ctx.core.buffered_proxying = true
+  end
+
+  ---
   -- Sets the protocol to use when proxying the request to the Service.
   -- @function kong.service.request.set_scheme
   -- @phases `access`
