@@ -45,24 +45,25 @@ do
   local function customize_routes(routes, custom_endpoints, schema)
     for route_pattern, verbs in pairs(custom_endpoints) do
       if routes[route_pattern] ~= nil and type(verbs) == "table" then
-        for verb, handler in pairs(verbs) do
-          local parent = routes[route_pattern]["methods"][verb]
+        local methods = verbs.methods or verbs
+        for method, handler in pairs(methods) do
+          local parent = routes[route_pattern]["methods"][method]
           if parent ~= nil and type(handler) == "function" then
-            routes[route_pattern]["methods"][verb] = function(self, db, helpers)
+            routes[route_pattern]["methods"][method] = function(self, db, helpers)
               return handler(self, db, helpers, function(post_process)
                 return parent(self, db, helpers, post_process)
               end)
             end
 
           else
-            routes[route_pattern]["methods"][verb] = handler
+            routes[route_pattern]["methods"][method] = handler
           end
         end
 
       else
         routes[route_pattern] = {
           schema  = verbs.schema or schema,
-          methods = verbs,
+          methods = verbs.methods or verbs,
         }
       end
     end
