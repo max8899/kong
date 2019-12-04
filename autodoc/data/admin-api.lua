@@ -611,6 +611,14 @@ return {
             strip the matching prefix from the upstream request URL.
           ]]
         },
+        path_handling = {
+          description = [[
+            Controls how the Service Path, Route Path and requested path are combined when sending a request to the
+            upstream. While these often will be just concatenated, there are some edge cases where they will not; for
+            instance, Kong will remove slashes to avoid sending "double slashes" on the request.
+            `"v0"` is the behavior used in Kong 0.x. `"v1"` is the behavior used in Kong 1.x.
+          ]]
+        },
         preserve_host = {
           description = [[
             When matching a Route via one of the `hosts` domain names,
