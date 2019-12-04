@@ -185,6 +185,7 @@ describe("declarative config: flatten", function()
               snis = { "example.com" },
               sources = null,
               strip_path = true,
+              path_handling = "v1",
               updated_at = 1234567890
             }
           }
@@ -415,6 +416,7 @@ describe("declarative config: flatten", function()
               snis = null,
               sources = null,
               strip_path = true,
+              path_handling = "v1",
               updated_at = 1234567890
             }
           },
@@ -680,6 +682,7 @@ describe("declarative config: flatten", function()
                 snis = null,
                 sources = null,
                 strip_path = true,
+                path_handling = "v1",
                 tags = null,
                 updated_at = 1234567890
               } },
@@ -750,6 +753,7 @@ describe("declarative config: flatten", function()
                 snis = null,
                 sources = null,
                 strip_path = true,
+                path_handling = "v1",
                 tags = null,
                 updated_at = 1234567890
               }, {
@@ -771,6 +775,7 @@ describe("declarative config: flatten", function()
                 snis = null,
                 sources = null,
                 strip_path = true,
+                path_handling = "v1",
                 tags = null,
                 updated_at = 1234567890
               }, {
@@ -792,6 +797,7 @@ describe("declarative config: flatten", function()
                 snis = null,
                 sources = null,
                 strip_path = true,
+                path_handling = "v1",
                 tags = null,
                 updated_at = 1234567890
               }, {
@@ -813,6 +819,7 @@ describe("declarative config: flatten", function()
                 snis = null,
                 sources = null,
                 strip_path = true,
+                path_handling = "v1",
                 tags = null,
                 updated_at = 1234567890
               } },
@@ -887,6 +894,7 @@ describe("declarative config: flatten", function()
                 snis = null,
                 sources = null,
                 strip_path = true,
+                path_handling = "v1",
                 updated_at = 1234567890
               }
             },
@@ -1039,6 +1047,7 @@ describe("declarative config: flatten", function()
                 snis = null,
                 sources = null,
                 strip_path = true,
+                path_handling = "v1",
                 tags = null,
                 updated_at = 1234567890
               }, {
@@ -1060,6 +1069,7 @@ describe("declarative config: flatten", function()
                 snis = null,
                 sources = null,
                 strip_path = true,
+                path_handling = "v1",
                 tags = null,
                 updated_at = 1234567890
               } },
