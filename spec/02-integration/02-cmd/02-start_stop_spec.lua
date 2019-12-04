@@ -235,7 +235,7 @@ describe("kong start/stop #" .. strategy, function()
     end)
   end)
 
-  if strategy == "memory" then
+  if strategy == "off" then
     describe("declarative config start", function()
       it("starts with a valid declarative config file", function()
         local yaml_file = helpers.make_yaml_file [[
@@ -260,7 +260,7 @@ describe("kong start/stop #" .. strategy, function()
         end)
 
         assert(helpers.start_kong({
-          storage = "memory",
+          database = "off",
           declarative_config = yaml_file,
           nginx_worker_processes = 100, -- stress test initialization
           nginx_conf = "spec/fixtures/custom_nginx.template",
@@ -404,7 +404,7 @@ describe("kong start/stop #" .. strategy, function()
       end)
     end
 
-    if strategy == "memory" then
+    if strategy == "off" then
       it("does not start with an invalid declarative config file", function()
         local yaml_file = helpers.make_yaml_file [[
           _format_version: "1.1"
@@ -426,7 +426,7 @@ describe("kong start/stop #" .. strategy, function()
         end)
 
         local ok, err = helpers.start_kong({
-          storage = "memory",
+          database = "off",
           declarative_config = yaml_file,
         })
         assert.falsy(ok)
